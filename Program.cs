@@ -1,57 +1,41 @@
 ﻿using System;
-using System.Linq;
 
-namespace assignment_3
+namespace assighnment_3
 {
     class Program
     {
-        static void Main(string[] args)
+        static int removeDuplicates(int[] arr, int n)
         {
 
-            var prices = new[] { 12, 15, 30, 10, 5 , 20};
+            if (n == 0 || n == 1)
+                return n;
 
+            int[] temp = new int[n];
 
+            int j = 0;
 
-            var max = prices[0];
-            for (int i = 1; i < prices.Length; i++)
-            {
-                if (prices[i] > max)
-                {
-                    max = prices[i];
-                }
-            }
-            Console.WriteLine(max);
+            for (int i = 0; i < n - 1; i++)
 
-            var min = prices[0];
-            for (int i = 1; i < prices.Length; i++)
-            {
-                if (prices[i] < min)
-                {
-                    min = prices[i];
-                }
-            }
-            Console.WriteLine(min);
+                if (arr[i] != arr[i + 1])
+                    temp[j++] = arr[i];
 
+            temp[j++] = arr[n - 1];
 
-            var sum = 0d; // d for double
-            for (int i = 0; i < prices.Length; i++)
-            {
-                sum += prices[i];
-            }
-            Console.WriteLine(sum);
-            for (int i = 0; i < prices.Length; i++)
-            {
+            for (int i = 0; i < j; i++)
+                arr[i] = temp[i];
 
-
-            }
-
-            var average = prices.Average();
-            Console.WriteLine(average);
-
-
-
+            return j;
         }
 
+        public static void Main()
+        {
+            int[] arr = { 1, 2, 2, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8, };
+            int n = arr.Length;
 
+            n = removeDuplicates(arr, n);
+
+            for (int i = 0; i < n; i++)
+                Console.Write(arr[i] + " ");
+        }
     }
 }
